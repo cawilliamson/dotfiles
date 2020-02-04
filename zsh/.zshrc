@@ -1,16 +1,25 @@
 # set encoding
 LANG="en_GB.UTF-8"
 
+# defaults
+EDITOR=nvim
+export EDITOR
+
+# powerline10k - instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # dotfiles
 declare -a apps=("zsh")
-pushd $HOME/.dotfiles >/dev/null
+pushd ${HOME}/.dotfiles >/dev/null
   for app in "${apps[@]}"; do
     stow -R -t ~ ${app}
   done
 popd >/dev/null
 
 # zplug - init
-export ZPLUG_HOME=/Users/${USER}/.zplug
+export ZPLUG_HOME=${HOME}/.zplug
 if [ ! -d ${ZPLUG_HOME} ]; then
   git clone https://github.com/zplug/zplug ${ZPLUG_HOME}
   sed -i'' -e 's,compinit -d,compinit -u -d,g' ${ZPLUG_HOME}/base/core/load.zsh
@@ -39,12 +48,14 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 # zplug - load
 zplug load
 
-# custom
-alias retry='until !!; do done'
+# dsdo
+PATH=$PATH:$HOME/Projects/dsgo
+export PATH
 
 # python
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
+source /Users/dev35/.venv/bin/activate
 
 # thefuck
 eval $(thefuck --alias)
