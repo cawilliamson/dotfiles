@@ -48,14 +48,17 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 # zplug - load
 zplug load
 
+# aws
+export AWS_PROFILE=ds-master
+
 # dsdo
 PATH=$PATH:$HOME/Projects/dsgo
 export PATH
 
 # python
-alias python=/usr/local/bin/python3
-alias pip=/usr/local/bin/pip3
-source /Users/dev35/.venv/bin/activate
+#alias python2=/usr/bin/python
+#alias python3=/usr/local/bin/python3
+#source /Users/dev35/.venv/bin/activate
 
 # thefuck
 eval $(thefuck --alias)
@@ -64,7 +67,7 @@ alias f='fuck'
 # vim
 alias vi='nvim'
 alias vim='nvim'
-alias nano='nvim'
+alias nano='echo "Bad habit! Use Vi!"'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
